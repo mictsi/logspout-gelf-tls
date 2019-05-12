@@ -1,0 +1,10 @@
+version: '2'
+
+services:
+  logspout:
+    image: log-1
+    hostname: myhostname
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: gelf+tls://graycloud.ite.kth.se:12201
+    restart: unless-stopped
