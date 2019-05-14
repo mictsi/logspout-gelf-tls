@@ -15,6 +15,7 @@ variables:
   imageNameLatest: 'logspout-gelf-tls:latest'
 
 steps:
+- script: echo $(micke)
 - script: docker login -u $(dockerId) -p $(dockerPassword)
   displayName: 'docker login'
   
