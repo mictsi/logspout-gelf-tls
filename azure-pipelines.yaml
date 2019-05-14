@@ -11,8 +11,7 @@ pool:
   vmImage: 'Ubuntu 16.04'
 
 variables:
-  imageName: 'logspout-gelf-tls:$(build.buildId)'
-  imageNameLatest: 'logspout-gelf-tls:latest'
+- group: DockerHub
 
 steps:
 - script: echo $(micke)
