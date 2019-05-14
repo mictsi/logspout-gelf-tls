@@ -11,25 +11,25 @@ variables:
   imageNameLatest: 'logspout-gelf-tls:latest'
 
 steps:
-- script: docker build -t $(dockerIdKTHSE)/$(imageName) .
-  displayName: 'docker build'
-
 - script: docker login -u $(dockerId) -p $(dockerPassword)
   displayName: 'docker login'
+  
+- script: docker build -t $(dockerhubkthse)/$(imageName) .
+  displayName: 'docker build'
 
-- script: docker push $(dockerIdKTHSE)/$(imageName)
+- script: docker push $(dockerhubkthse)/$(imageName)
   displayName: 'Docker Push'
 
 #Push to docker hub with buildid tag
-- script: docker push $(dockerIdKTHSE)/$(imageName)
+- script: docker push $(dockerhubkthse)/$(imageName)
   displayName: 'KTHse: Push Docker image to KTHse DockerHub'
   
 #Tag with latest tag
-- script: docker image tag $(dockerIdKTHSE)/$(imageName) $(dockerIdKTHSE)/$(imageNameLatest)
+- script: docker image tag $(dockerhubkthse)/$(imageName) $(dockerhubkthse)/$(imageNameLatest)
   displayName: 'KTHse: tag image for push to KTHse Dockerhub'
 
 #Push to docker hub with latest tag
-- script: docker push $(dockerIdKTHSE)/$(imageNameLatest)
+- script: docker push $(dockerhubkthse)/$(imageNameLatest)
   displayName: 'KTHse: Push Docker image to KTHse Dockerhub'
   
 #To ACR
@@ -38,11 +38,11 @@ steps:
   displayName: 'docker login KTH.SE ACRegistry'
 
 #Tag image for ACR
-- script: docker image tag $(dockerIdKTHSE)/$(imageName) $(acrhostname)/$(imageName)
+- script: docker image tag $(dockerhubkthse)/$(imageName) $(acrhostname)/$(imageName)
   displayName: 'Tag image for push to KTH.SE ACRegistry'
 
 #Create Latest Tag
-- script: docker image tag $(dockerIdKTHSE)/$(imageName) $(acrhostname)/$(imageNameLatest)
+- script: docker image tag $(dockerhubkthse)/$(imageName) $(acrhostname)/$(imageNameLatest)
   displayName: 'Tag image as latest tag for push to KTH.SE ACRegistry'
 
 #Push images to ACR
