@@ -31,3 +31,23 @@ steps:
 #Push to docker hub with latest tag
 - script: docker push $(dockerIdKTHSE)/$(imageNameLatest)
   displayName: 'KTHse: Push Docker image to KTHse Dockerhub'
+  
+#To ACR
+#Login to ACR
+- script: docker login $(acrhostname) -u $(acrLogin)  -p $(acrPassword)
+  displayName: 'docker login KTH.SE ACRegistry'
+
+#Tag image for ACR
+- script: docker image tag $(dockerIdKTHSE)/$(imageName) $(acrhostname)/$(imageName)
+  displayName: 'Tag image for push to KTH.SE ACRegistry'
+
+#Create Latest Tag
+- script: docker image tag $(dockerIdKTHSE)/$(imageName) $(acrhostname)/$(imageNameLatest)
+  displayName: 'Tag image as latest tag for push to KTH.SE ACRegistry'
+
+#Push images to ACR
+- script: docker push $(acrhostname)/$(imageName)
+  displayName: 'Push image to KTH.SE ACRegistry'
+
+- script: docker push $(acrhostname)/$(imageNameLatest)
+  displayName: 'Push latest tag to KTH.SE ACRegistry'
