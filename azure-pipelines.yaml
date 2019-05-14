@@ -14,7 +14,6 @@ variables:
 - group: DockerHub
 
 steps:
-- script: echo $(micke)
 - script: docker login -u $(dockerId) -p $(dockerPassword)
   displayName: 'docker login'
   
