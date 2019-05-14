@@ -6,5 +6,5 @@ services:
     hostname: myhostname
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-    command: gelf+tls://graycloud.ite.kth.se:12201
+    command: gelf+tls://mygraylogservername-FQDN:12201
     restart: unless-stopped
