@@ -4,7 +4,7 @@
 # Logspout with GELF adapter and TCP+TLS support
 A logspout docker image with TLS support. 
 
-This image contains [Logspout](https://github.com/gliderlabs/logspout) which is compiled with [GELF adapter] and originally forked from (https://github.com/karlvr/logspout-gelf) so you can forward Docker logs in GELF.
+This image contains [Logspout](https://github.com/gliderlabs/logspout) which is compiled with [GELF adapter] and originally forked from https://github.com/karlvr/logspout-gelf so you can forward Docker logs in GELF to a Graylog server.
 
 # Docker hub images
 Images are published in the following registry, https://hub.docker.com/r/kthse/logspout-gelf-tls
