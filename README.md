@@ -14,8 +14,11 @@ Always read the official instructions first. This image should work the same way
 
 Remember to set the hostname of the container to something meaningfull, because that gets set as the source of the GELF message.
 
-### CLI example
-`docker run -d --name=logspout --restart=unless-stopped -h $(hostname -f) -v /var/run/docker.sock:/var/run/docker.sock vincit/logspout-gelf gelf://my.log.server:12201`
+### CLI example for gelf over udp
+`docker run -d --name=logspout --restart=unless-stopped -h $(hostname -f) -v /var/run/docker.sock:/var/run/docker.sock kthse/logspout-gelf-tls:108 gelf://my.log.server:12201`
+
+### CLI example for gelf over TCP and with TLS encryption
+`docker run -d --name=logspout --restart=unless-stopped -h $(hostname -f) -v /var/run/docker.sock:/var/run/docker.sock kthse/logspout-gelf-tls:108 gelf+tls://my.log.server:12201`
 
 ### Docker Compose example
 You could use this image with the following docker-compose file for unencrypted gelf messages over udp:
