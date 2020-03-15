@@ -8,8 +8,9 @@
 trigger:
 - master
 
+#https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops
 pool:
-  vmImage: 'Ubuntu 16.04'
+  vmImage: ubuntu-latest
 
 variables:
 - group: DockerHub
