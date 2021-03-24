@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net"
 	"os"
@@ -11,7 +12,8 @@ import (
 	"strings"
 	"syscall"
 	"time"
-
+	
+	"github.com/gliderlabs/logspout/cfg"
 	"github.com/gliderlabs/logspout/router"
 	"github.com/Graylog2/go-gelf/gelf"
 )
@@ -55,9 +57,15 @@ func debug(v ...interface{}) {
 }
 
 func getHostname() string {
-	hostname, _ = os.Hostname()
+	log.Println("Graylog:", "get")
+	content, err := ioutil.ReadFile("/etc/host_hostname")
+	if err == nil && len(content) > 0 {
+		hostname = strings.TrimRight(string(content), "\r\n")
+	} else {
+		hostname = cfg.GetEnvDefault("SYSLOG_HOSTNAME", "{{.Container.Config.Hostname}}")
+	}
+	log.Println("Graylog:", hostname)
 	return hostname
-
 }
 
 // GelfAdapter is an adapter that streams UDP JSON to Graylog
@@ -98,11 +106,7 @@ func (a *GelfAdapter) Stream(logstream chan *router.Message) {
 		}
 
 		messageHostname := hostname
-		if messageHostname == "" {
-			// Same default as https://github.com/gliderlabs/logspout/blob/master/adapters/syslog/syslog.go
-			messageHostname = m.Container.Config.Hostname
-		}
-
+		
 		shortMessage := m.Data
 		if shortMessage == "" {
 			continue
