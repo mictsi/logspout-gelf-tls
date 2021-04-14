@@ -11,7 +11,8 @@ import (
 	"strings"
 	"syscall"
 	"time"
-
+	"io/ioutil"
+	"github.com/gliderlabs/logspout/cfg"
 	"github.com/gliderlabs/logspout/router"
 	"github.com/Graylog2/go-gelf/gelf"
 )
