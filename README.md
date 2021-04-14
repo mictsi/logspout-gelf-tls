@@ -14,7 +14,6 @@ Modify the docker compose file to point to your graylogserver and run it with th
 
 Use  gelf://my.log.server:12201 as protocol for gelf over udp and  gelf+tls://my.log.server:12201 for gelf over TCP+TLS
 
-
 ### CLI example for gelf over udp
 `docker run -d --name=logspout --restart=unless-stopped -h $(hostname -f) -v /var/run/docker.sock:/var/run/docker.sock kthse/logspout-gelf-tls:latest gelf://my.log.server:12201`
 
