@@ -24,7 +24,7 @@ RUN echo 'import ( _ "github.com/gliderlabs/logspout/adapters/raw" )' >> /go/src
     && echo 'import ( _ "github.com/gliderlabs/logspout/transports/tls" )' >> /go/src/github.com/gliderlabs/logspout/modules.go \
     && echo 'import ( _ "github.com/gliderlabs/logspout/healthcheck" )' >> /go/src/github.com/gliderlabs/logspout/modules.go \
     && echo 'import ( _ "github.com/gliderlabs/logspout/adapters/multiline" )' >> /go/src/github.com/gliderlabs/logspout/modules.go \
-    && echo 'import ( _ "github.com/mictsi/logspout-gelf-1" )' >> /go/src/github.com/gliderlabs/logspout/modules.go
+    && echo 'import ( _ "github.com/mictsi/logspout-gelf-tls" )' >> /go/src/github.com/gliderlabs/logspout/modules.go
 
 RUN go get -d -v ./...
 RUN go build -v -ldflags "-X main.Version=$(cat VERSION)" -o ./bin/logspout
