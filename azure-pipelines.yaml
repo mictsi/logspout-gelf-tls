@@ -8,6 +8,14 @@
 trigger:
 - master
 
+#  Schedule weekly build
+schedules:
+- cron: "0 0 * * SUN"
+  displayName: Sunday midnight build
+  branches:
+    include:
+    - main
+
 #https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops
 pool:
   vmImage: ubuntu-latest
