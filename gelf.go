@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"net"
 	"os"
@@ -54,7 +55,13 @@ func debug(v ...interface{}) {
 }
 
 func getHostname() string {
-	hostname, _ = os.Hostname()
+	content, err := ioutil.ReadFile("/etc/host_hostname")
+	if err == nil && len(content) > 0 {
+		hostname = strings.TrimRight(string(content), "\r\n")
+	} else {
+		hostname, _ = os.Hostname()
+	}
+
 	return hostname
 
 }
