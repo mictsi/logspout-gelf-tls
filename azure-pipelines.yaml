@@ -14,7 +14,7 @@ schedules:
   displayName: Sunday midnight build
   branches:
     include:
-    - main
+    - master
 
 #https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops
 pool:
