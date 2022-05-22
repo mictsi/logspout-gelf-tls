@@ -64,3 +64,24 @@ steps:
 
 - script: docker push $(acrhostname)/$(imageNameLatest)
   displayName: 'Push latest tag to KTH.SE ACRegistry'
+
+#To GHR
+#Login to GHR
+- script: docker login $(GHRegistry) -u $(GHUsername)  -p $(GHPAT)
+  displayName: 'docker login GHRegistry'
+
+#Tag image for GHR
+- script: docker image tag $(dockerhubkthse)/$(imageName) ghcr.io/mictsi/logspout-gelf-tls/$(imageName)
+  displayName: 'Tag image for push to GHRegistry'
+
+#Create Latest Tag
+- script: docker image tag $(dockerhubkthse)/$(imageName) ghcr.io/mictsi/logspout-gelf-tls/$(imageNameLatest)
+  displayName: 'Tag image as latest tag for push to GHCR'
+
+#Push images to GHR
+- script: docker push ghcr.io/mictsi/logspout-gelf-tls/$(imageName)
+  displayName: 'Push image to GHCR'
+
+- script: docker push ghcr.io/mictsi/logspout-gelf-tls/$(imageNameLatest)
+  displayName: 'Push latest tag to GHCR'
+
