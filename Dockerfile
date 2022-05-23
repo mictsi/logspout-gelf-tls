@@ -1,7 +1,7 @@
 FROM golang:alpine as build
 MAINTAINER michael@kth.se
 LABEL maintainer "michael@kth.se"
-ENV LOGSPOUT_VERSION=3.2.13
+ENV LOGSPOUT_VERSION=3.2.14
 RUN mkdir -p /go/src
 WORKDIR /go/src
 VOLUME /mnt/routes
