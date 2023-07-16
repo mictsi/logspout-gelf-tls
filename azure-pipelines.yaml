@@ -11,8 +11,8 @@ trigger:
 
 #  Schedule weekly build
 schedules:
-- cron: "0 0 * * SUN"
-  displayName: Sunday midnight build
+- cron: "1 0 1,14 * *"
+  displayName: the 1st and 14th
   branches:
     include:
     - master
