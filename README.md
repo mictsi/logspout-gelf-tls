@@ -57,4 +57,4 @@ services:
 
 This image is provided as-is and only with best effort. We try to update this image with the latest Logspout stable version. 
 
-bump = 1
+bump = 2
